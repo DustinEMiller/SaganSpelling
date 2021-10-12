@@ -1,0 +1,30 @@
+{
+  "words": 
+    [
+      {
+      "highFrequencyWords": [
+        {"word": "clock", "soundFile": "boy.wav"},
+        {"word": "car", "soundFile": "girl.wav"},
+        {"word": "rain", "soundFile": ""},
+        {"word": "stop", "soundFile": ""},
+        {"word": "because", "soundFile": ""}
+      ],
+      "otherWords": [
+        {"word": "mate", "soundFile": ""},
+        {"word": "wave", "soundFile": ""},
+        {"word": "shade", "soundFile": ""},
+        {"word": "side", "soundFile": ""},
+        {"word": "snake", "soundFile": ""},
+        {"word": "corn", "soundFile": ""},
+        {"word": "bone", "soundFile": ""},
+        {"word": "poke", "soundFile": ""},
+        {"word": "like", "soundFile": ""},
+        {"word": "pine", "soundFile": ""},
+        {"word": "cape", "soundFile": ""},
+        {"word": "rose", "soundFile": ""},
+        {"word": "date", "soundFile": ""},
+        {"word": "shine", "soundFile": ""}
+      ]
+    }
+  ]
+}
