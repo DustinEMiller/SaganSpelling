@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -52,17 +53,14 @@ public class WordManager : MonoBehaviour
         for (var i = 0; i < 2; i++)
         {
             if (allLetters.Length >= 10)
-            {
                 return allLetters;
-            }
+            
             allLetters += GetVowel();
         }
         
         for (var i = allLetters.Length; i < 10; i++)
-        {
             allLetters += GetConsonant();
-        }
-        
+
         return allLetters;
     }
 
@@ -70,14 +68,13 @@ public class WordManager : MonoBehaviour
     {
         if (submittedWord == _currentWord)
         {
-            //Correct sound is overriding word sound
             SoundManager.PlaySound(SoundManager.Sound.Correct);
             GameManager.Instance.RetrieveNewWord();
         }
         else
         {
-            //Create function(s) to highlight chosen letters that are incorrect.
             SoundManager.PlaySound(SoundManager.Sound.Incorrect);
+            HighlightCharacters(submittedWord);
         }
     }
 
@@ -88,15 +85,11 @@ public class WordManager : MonoBehaviour
         int number = Random.Range(1, 8);
 
         if (number <= 5)
-        {
             _currentWord = _wordList.words[0].highFrequencyWords[Random.Range(0, _wordList.words[0].highFrequencyWords.Count)].word;
-        }
         else
-        {
             _currentWord = _wordList.words[0].otherWords[Random.Range(0, _wordList.words[0].otherWords.Count)].word;
-        }
 
-        SoundManager.PlayWord(_currentWord);
+        SoundManager.PlaySound(_currentWord);
     }
     
     private char GetVowel()
@@ -111,6 +104,24 @@ public class WordManager : MonoBehaviour
         string chars = "bcdfghjklmnpqrstvwxyz";
         int num = Random.Range(0, chars.Length);
         return chars[num];
+    }
+
+    private void HighlightCharacters(string submittedWord)
+    {
+        List<int> highlightedCharacters = new List<int>();
+
+        for (var i = 0; i <= _currentWord.Length; i++ )
+        {
+            if (submittedWord.Length >= _currentWord.Length)
+            {
+                if (_currentWord[i] == submittedWord[i])
+                    highlightedCharacters.Add(1);
+                else
+                    highlightedCharacters.Add(0);
+            }
+        }
+
+        Debug.Log(highlightedCharacters);
     }
     
 }

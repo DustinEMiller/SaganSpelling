@@ -21,7 +21,7 @@ public class WordPanel : MonoBehaviour
         
         _repeatWord.onClick.AddListener(() =>
         {
-            soundManager.PlayWord(WordManager.Instance.CurrentWord);
+            soundManager.PlaySound(WordManager.Instance.CurrentWord);
         });
     }
 
