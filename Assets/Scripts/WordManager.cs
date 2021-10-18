@@ -110,9 +110,9 @@ public class WordManager : MonoBehaviour
     {
         List<int> highlightedCharacters = new List<int>();
 
-        for (var i = 0; i <= _currentWord.Length; i++ )
+        for (var i = 0; i <= _currentWord.Length - 1; i++ )
         {
-            if (submittedWord.Length >= _currentWord.Length)
+            if (i + 1 <= submittedWord.Length)
             {
                 if (_currentWord[i] == submittedWord[i])
                     highlightedCharacters.Add(1);
@@ -120,8 +120,13 @@ public class WordManager : MonoBehaviour
                     highlightedCharacters.Add(0);
             }
         }
-
-        Debug.Log(highlightedCharacters);
+        
+        if(submittedWord.Length > _currentWord.Length)
+            highlightedCharacters.AddRange(Enumerable.Repeat(0, submittedWord.Length - _currentWord.Length));
+        else if(submittedWord.Length < _currentWord.Length)
+            highlightedCharacters.AddRange(Enumerable.Repeat(2, _currentWord.Length - submittedWord.Length));
+        
+        WordPanel.SetWordHighlights(highlightedCharacters);
     }
     
 }
