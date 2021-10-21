@@ -11,7 +11,17 @@ public class Knight : MonoBehaviour
     private Animator _animator;
     private char _letter;
     private bool _selected = false;
-    private int _index = -1;
+    private bool _attacking = false;
+    private float _damage;
+    
+    public float Damage
+    {
+        get { return _damage; }
+        set
+        {
+            _damage = value;
+        }
+    }
 
     private void Awake()
     {
@@ -24,6 +34,12 @@ public class Knight : MonoBehaviour
         _animator.SetBool("Walk", _navMeshAgent.velocity.magnitude > 0f);
         _letterLabel.transform.LookAt(Camera.main.transform);
         _letterLabel.transform.localScale = new Vector3(-1, 1,1);
+
+        //Knights should have a state enum?
+        if (_attacking)
+        {
+            
+        }
     }
 
     private void OnMouseDown()
@@ -39,6 +55,16 @@ public class Knight : MonoBehaviour
             _selected = true;
             WordManager.Instance.SelectKnight(this);
             ChangeTextColor(Color.green);
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Monster monster = collision.GetComponent<Monster>();
+        if(monster != null)
+        {
+            //monster.GetComponent<HealthSystem>().Damage(_damage);
+            Destroy(gameObject);
         }
     }
 
@@ -70,13 +96,9 @@ public class Knight : MonoBehaviour
         _letterCollider.center += position;
     }
 
-    public void SetIndex(int index)
+    public void Attack()
     {
-        _index = index;
-    }
-    
-    public int GetIndex()
-    {
-        return _index;
+        _attacking = true;
+        _letterLabel.enabled = false;
     }
 }

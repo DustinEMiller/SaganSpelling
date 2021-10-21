@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,13 @@ public class SoundManager : MonoBehaviour
     private Dictionary<Sound, AudioClip> _audioClipDictionary;
     private bool _soundPlaying = false;
     
+    [Serializable]
     public enum Sound
     {
-        Intro,
-        Correct,
-        Incorrect,
-        NewMonster
+        Intro = 0,
+        Correct = 1,
+        Incorrect = 2,
+        NewMonster = 3
     }
 
     private void Awake()
@@ -36,18 +38,23 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(Sound sound)
-    {
-        AudioClip audioClip = _audioClipDictionary[sound];
-        _soundQueue.Add(audioClip);
-
-        ProcessAudioQueue();
-    }
-    
     public void PlaySound(string sound)
     {
         string wordUrl = _audioLocation + sound + ".wav";
         _wordQueue.Add(wordUrl);
+
+        ProcessAudioQueue();
+    }
+    
+    public void PlaySound(int sound)
+    {
+        PlaySound((Sound)sound);
+    }
+    
+    public void PlaySound(Sound sound)
+    {
+        AudioClip audioClip = _audioClipDictionary[sound];
+        _soundQueue.Add(audioClip);
 
         ProcessAudioQueue();
     }

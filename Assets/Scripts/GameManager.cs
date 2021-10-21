@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameIntro()
     {
-        //_soundManager.PlaySound(SoundManager.Sound.Intro);
-        yield return new WaitForSeconds(2.0f);
+        _soundManager.PlaySound(SoundManager.Sound.Intro);
+        yield return new WaitForSeconds(19.0f);
         _introComplete = true;
 
         if (_listIsLoaded)
