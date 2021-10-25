@@ -41,10 +41,10 @@ public class KnightSpawner : MonoBehaviour
 
     private void DespawnKnights()
     {
-        foreach (Knight knight in _knights)
+        /*foreach (Knight knight in _knights)
         {
             Destroy(knight.gameObject);
-        }
+        }*/
         
         _knights.Clear();
     }

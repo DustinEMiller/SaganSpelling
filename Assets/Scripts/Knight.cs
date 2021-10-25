@@ -38,7 +38,7 @@ public class Knight : MonoBehaviour
         //Knights should have a state enum?
         if (_attacking)
         {
-            
+            WalkToDestination(MonsterSpawner.Instance.CurrentTarget().transform);
         }
     }
 

@@ -9,9 +9,14 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private Monster _monsterPrefab;
     private List<Monster> _monsters = new List<Monster>();
     
+    public static MonsterSpawner Instance { get; private set; }
     public UnityEvent onMonsterSpawned;
     
     private float _nextSpawnTimer = 20f;
+    private void Awake()
+    {
+        Instance = this;
+    }
     
 
     private void SpawnMonster()
@@ -30,5 +35,16 @@ public class MonsterSpawner : MonoBehaviour
             if(_nextSpawnTimer <= 0)
                 _nextSpawnTimer = 30f;
         }
+    }
+
+    public Monster CurrentTarget()
+    {
+        Debug.Log(_monsters[0].transform.position);
+        return _monsters[0];
+    }
+
+    public void RemoveMonster()
+    {
+        _monsters.RemoveAt(0);
     }
 }
