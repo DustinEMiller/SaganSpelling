@@ -39,7 +39,7 @@ public class MonsterSpawner : MonoBehaviour
 
     public Monster CurrentTarget()
     {
-        Debug.Log(_monsters[0].transform.position);
+        //Debug.Log(_monsters[0].transform.position);
         return _monsters[0];
     }
 

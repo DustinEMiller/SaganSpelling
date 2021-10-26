@@ -33,7 +33,7 @@ public class WordManager : MonoBehaviour
     public void SelectKnight(Knight knight)
     {
         _selectedKnights.Add(knight);
-        WordPanel.AddCharacter(knight.GetLetter());
+        WordPanel.AddCharacter(knight.GetComponentInChildren<KnightLetter>().GetLetter());
     }
 
     public void RemoveKnight(Knight knight)

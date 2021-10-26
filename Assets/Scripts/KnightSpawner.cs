@@ -32,10 +32,10 @@ public class KnightSpawner : MonoBehaviour
             
             _knights.Add(Instantiate(_knightPrefab, position.position, Quaternion.identity));
             var knightInstance = _knights[_knights.Count - 1];
-            knightInstance.AssignLetter(letter);
+            knightInstance.GetComponentInChildren<KnightLetter>().AssignLetter(letter);
 
             if (i < 5)
-                knightInstance.RaiseTextLabel();
+                knightInstance.GetComponentInChildren<KnightLetter>().RaiseTextLabel();
         }
     }
 

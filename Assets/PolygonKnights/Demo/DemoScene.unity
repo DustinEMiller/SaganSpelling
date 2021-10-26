@@ -16882,6 +16882,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 545949206}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &555172315
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418467413, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345772925418490831, guid: 7e5ba828aa9e8754d92341c0d8c828a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange Knight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e5ba828aa9e8754d92341c0d8c828a4, type: 3}
 --- !u!1001 &557110946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32070,7 +32139,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - m_VirtualCamera: {fileID: 1029916523}
-    m_Hold: 17
+    m_Hold: 2
     m_Blend:
       m_Style: 1
       m_Time: 0.5
