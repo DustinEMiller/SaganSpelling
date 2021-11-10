@@ -21,30 +21,26 @@ public class Knight : MonoBehaviour
         }
     }
 
-    private void Awake()
+    void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    void Update()
     {
         _animator.SetBool("Walk", _navMeshAgent.velocity.magnitude > 0f);
 
         //Knights should have a state enum?
         if (_attacking)
         {
-            WalkToDestination(MonsterSpawner.Instance.CurrentTarget().transform);
-        }
-    }
+            var monster = MonsterSpawner.Instance.CurrentTarget();
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Monster monster = collision.GetComponent<Monster>();
-        if(monster != null)
-        {
-            //monster.GetComponent<HealthSystem>().Damage(_damage);
-            Destroy(gameObject);
+            if (monster != null)
+                WalkToDestination(monster.transform);
+            else
+                _navMeshAgent.ResetPath();
+            
         }
     }
 

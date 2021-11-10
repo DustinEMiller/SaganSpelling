@@ -11,16 +11,20 @@ public class MonsterSpawner : MonoBehaviour
     
     public static MonsterSpawner Instance { get; private set; }
     public UnityEvent onMonsterSpawned;
+    public UnityEvent onMonsterKilled;
     
     private float _nextSpawnTimer = 20f;
+    private int _monstersKilled = 0;
     private void Awake()
     {
         Instance = this;
     }
     
-
     private void SpawnMonster()
     {
+        if (_monsters == null)
+            _monsters = new List<Monster>();
+        
         _monsters.Add(Instantiate(_monsterPrefab, gameObject.transform.position, Quaternion.identity));
         onMonsterSpawned.Invoke();
     }
@@ -40,11 +44,25 @@ public class MonsterSpawner : MonoBehaviour
     public Monster CurrentTarget()
     {
         //Debug.Log(_monsters[0].transform.position);
+        if (_monsters.Count == 0)
+        {
+            return null;
+        }
         return _monsters[0];
+
     }
 
     public void RemoveMonster()
     {
+        Monster monster = _monsters[0];
+        _monstersKilled++;
+        onMonsterKilled.Invoke();
+        Destroy(monster.gameObject);
         _monsters.RemoveAt(0);
+    }
+
+    public int GetMonstersKilled()
+    {
+        return _monstersKilled;
     }
 }

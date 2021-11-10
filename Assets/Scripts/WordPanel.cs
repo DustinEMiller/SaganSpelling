@@ -9,6 +9,7 @@ public class WordPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _wordLabel;
     [SerializeField] private TextMeshProUGUI _hintLabel;
+    [SerializeField] private TextMeshProUGUI _monsterKilledLabel;
     [SerializeField] private Button _submitWord;
     [SerializeField] private Button _repeatWord;
     [SerializeField] private SoundManager _soundManager;
@@ -88,6 +89,12 @@ public class WordPanel : MonoBehaviour
 
         if (additionalLetters > 0)
             ShowHintLabel(additionalLetters);
+    }
+
+    public void SetMonstersKilled()
+    {
+        string count = MonsterSpawner.Instance.GetMonstersKilled().ToString();
+        _monsterKilledLabel.text = count;
     }
     
 }

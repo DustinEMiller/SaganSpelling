@@ -18,7 +18,7 @@ public class KnightSpawner : MonoBehaviour
     public void SpawnKnights()
     {
         if (_knights.Count > 0)
-            DespawnKnights();
+            ClearWaitingBattalion();
         
         string letters = WordManager.Instance.GetLetters();
         
@@ -31,7 +31,7 @@ public class KnightSpawner : MonoBehaviour
             Transform position = GameManager.Instance.GetWalkPoint(i);
             
             _knights.Add(Instantiate(_knightPrefab, position.position, Quaternion.identity));
-            var knightInstance = _knights[_knights.Count - 1];
+            Knight knightInstance = _knights[_knights.Count - 1];
             knightInstance.GetComponentInChildren<KnightLetter>().AssignLetter(letter);
 
             if (i < 5)
@@ -39,13 +39,8 @@ public class KnightSpawner : MonoBehaviour
         }
     }
 
-    private void DespawnKnights()
+    private void ClearWaitingBattalion()
     {
-        /*foreach (Knight knight in _knights)
-        {
-            Destroy(knight.gameObject);
-        }*/
-        
         _knights.Clear();
     }
 
