@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSO : MonoBehaviour
+[CreateAssetMenu(menuName = "ScriptableObjects/Monster")]
+public class MonsterSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Transform prefab;
+    public string name;
+    public int maxHealth;
+    public float speed;
 }
