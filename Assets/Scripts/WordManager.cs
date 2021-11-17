@@ -69,7 +69,7 @@ public class WordManager : MonoBehaviour
         if (submittedWord == _currentWord)
         {
             SoundManager.PlaySound(SoundManager.Sound.Correct);
-            KnightSpawner.Instance.SetDamage((float)_currentWord.Length);
+            KnightSpawner.Instance.SetDamage(_currentWord.Length);
             GameManager.Instance.RetrieveNewWord();
         }
         else

@@ -691,6 +691,8 @@ GameObject:
   - component: {fileID: 7488791674817277346}
   - component: {fileID: 7488791674826884004}
   - component: {fileID: 2246542107286112596}
+  - component: {fileID: 5962077974218605353}
+  - component: {fileID: 1433627517120047124}
   - component: {fileID: 1877019931770180823}
   - component: {fileID: 2627807028619560772}
   - component: {fileID: 5007466049320606519}
@@ -748,11 +750,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7ee2bb246744c592d9d17eaca6b873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!114 &5962077974218605353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488791674817444116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a752766bf95a64ab293590ed6ec9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 11400000, guid: 74ea402ee90cad6479a9a90c4ed487d3, type: 2}
+--- !u!114 &1433627517120047124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488791674817444116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a53d7b83770d44780f08bb5ae32a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmount: 0
+  maxHealth: 0
 --- !u!136 &1877019931770180823
 CapsuleCollider:
   m_ObjectHideFlags: 0

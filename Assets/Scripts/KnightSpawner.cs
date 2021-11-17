@@ -44,7 +44,7 @@ public class KnightSpawner : MonoBehaviour
         _knights.Clear();
     }
 
-    public void SetDamage(float damage)
+    public void SetDamage(int damage)
     {
         foreach (Knight knight in _knights)
         {

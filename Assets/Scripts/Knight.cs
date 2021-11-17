@@ -8,11 +8,11 @@ public class Knight : MonoBehaviour
     private Animator _animator;
 
     private bool _attacking = false;
-    private float _damage;
+    private int _damage;
 
     [SerializeField] private TextMeshPro _letterLabel;
     
-    public float Damage
+    public int Damage
     {
         get { return _damage; }
         set

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class MonsterSpawner : MonoBehaviour
 {
 
-    [SerializeField] private Monster _monsterPrefab;
+    [SerializeField] private List<MonsterSO> _monsterSOList = new List<MonsterSO>();
     private List<Monster> _monsters = new List<Monster>();
     
     public static MonsterSpawner Instance { get; private set; }
@@ -24,8 +24,10 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (_monsters == null)
             _monsters = new List<Monster>();
+
+        var _monsterType = _monsterSOList[Random.Range(0, _monsterSOList.Count)];
         
-        _monsters.Add(Instantiate(_monsterPrefab, gameObject.transform.position, Quaternion.identity));
+        _monsters.Add(Instantiate(_monsterType.prefab.gameObject.GetComponent<Monster>(), gameObject.transform.position, Quaternion.identity));
         onMonsterSpawned.Invoke();
     }
 
@@ -43,7 +45,6 @@ public class MonsterSpawner : MonoBehaviour
 
     public Monster CurrentTarget()
     {
-        //Debug.Log(_monsters[0].transform.position);
         if (_monsters.Count == 0)
         {
             return null;
