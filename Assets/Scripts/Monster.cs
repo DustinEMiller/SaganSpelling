@@ -16,13 +16,14 @@ public class Monster : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _monsterTypeHolder = GetComponent<MonsterSOHolder>();
+        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem.SetHealthAmountMax(_monsterTypeHolder.monster.maxHealth, true);
+        
     }
 
     void Start()
     {
-        _healthSystem = GetComponent<HealthSystem>();
         _navMeshAgent.speed = _monsterTypeHolder.monster.speed;
-        _healthSystem.SetHealthAmountMax(_monsterTypeHolder.monster.maxHealth, true);
         _healthSystem.OnDamaged += HealthSystem_OnDamaged;
         _healthSystem.OnDied += HealthSystem_OnDied;
     }

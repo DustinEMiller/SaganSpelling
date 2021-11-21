@@ -84,6 +84,8 @@ public class HealthSystem : MonoBehaviour
 
     public float GetHealthAmountNormalized()
     {
+        Debug.Log(healthAmount);
+        Debug.Log(maxHealth);
         return (float) healthAmount / maxHealth;
     }
 }

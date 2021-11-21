@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -10,8 +12,8 @@ public class MonsterSpawner : MonoBehaviour
     private List<Monster> _monsters = new List<Monster>();
     
     public static MonsterSpawner Instance { get; private set; }
-    public UnityEvent onMonsterSpawned;
-    public UnityEvent onMonsterKilled;
+    public event EventHandler OnMonsterSpawned;
+    public event EventHandler OnMonsterDied;
     
     private float _nextSpawnTimer = 20f;
     private int _monstersKilled = 0;
@@ -28,7 +30,7 @@ public class MonsterSpawner : MonoBehaviour
         var _monsterType = _monsterSOList[Random.Range(0, _monsterSOList.Count)];
         
         _monsters.Add(Instantiate(_monsterType.prefab.gameObject.GetComponent<Monster>(), gameObject.transform.position, Quaternion.identity));
-        onMonsterSpawned.Invoke();
+        OnMonsterSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()
@@ -50,16 +52,15 @@ public class MonsterSpawner : MonoBehaviour
             return null;
         }
         return _monsters[0];
-
     }
 
     public void RemoveMonster()
     {
         Monster monster = _monsters[0];
         _monstersKilled++;
-        onMonsterKilled.Invoke();
         Destroy(monster.gameObject);
         _monsters.RemoveAt(0);
+        OnMonsterDied?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetMonstersKilled()

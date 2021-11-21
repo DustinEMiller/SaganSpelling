@@ -31,7 +31,12 @@
         {"word": "jump", "soundFile": ""},
         {"word": "off", "soundFile": ""},
         {"word": "quit", "soundFile": ""},
-        {"word": "why", "soundFile": ""}
+        {"word": "why", "soundFile": ""},
+        {"word": "who", "soundFile": ""},
+        {"word": "mail", "soundFile": ""},
+        {"word": "them", "soundFile": ""},
+        {"word": "what", "soundFile": ""},
+        {"word": "said", "soundFile": ""}
       ],
       "otherWords": [
         {"word": "fox", "soundFile": ""},
@@ -194,7 +199,19 @@
         {"word": "prize", "soundFile": ""},
         {"word": "press", "soundFile": ""},
         {"word": "print", "soundFile": ""},
-        {"word": "pry", "soundFile": ""}
+        {"word": "pry", "soundFile": ""},
+        {"word": "skate", "soundFile": ""},
+        {"word": "skin", "soundFile": ""},
+        {"word": "skip", "soundFile": ""},
+        {"word": "skim", "soundFile": ""},
+        {"word": "scrap", "soundFile": ""},
+        {"word": "scrape", "soundFile": ""},
+        {"word": "scram", "soundFile": ""},
+        {"word": "scrub", "soundFile": ""},
+        {"word": "spring", "soundFile": ""},
+        {"word": "spray", "soundFile": ""},
+        {"word": "sprint", "soundFile": ""},
+        {"word": "sprig", "soundFile": ""}
       ]
     }
   ]

@@ -28,6 +28,16 @@ public class SoundManager : MonoBehaviour
         NewMonster = 3
     }
 
+    public void Start()
+    {
+        MonsterSpawner.Instance.OnMonsterSpawned += MonsterSpawner_OnSpawned;
+    }
+
+    private void MonsterSpawner_OnSpawned(object sender, EventArgs e)
+    {
+        PlaySound(Sound.NewMonster);
+    }
+
     private void Awake()
     {
         _audioClipDictionary = new Dictionary<Sound, AudioClip>();
@@ -41,6 +51,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(string sound)
     {
         string wordUrl = _audioLocation + sound + ".wav";
+        Debug.Log(wordUrl);
         _wordQueue.Add(wordUrl);
 
         ProcessAudioQueue();

@@ -15,9 +15,12 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         _slider = GetComponent<Slider>();
-        _healthSystem.OnDamaged += HealthSystem_OnDamaged;
-        _healthSystem.OnHealed += HealthSystem_OnHealed;
-       // _healthSystem.OnHealthMaxChange += HealthSystem_OnHealthMaxChange;
+        if (_healthSystem != null)
+        {
+            _healthSystem.OnDamaged += HealthSystem_OnDamaged;
+            _healthSystem.OnHealed += HealthSystem_OnHealed;
+        }
+        // _healthSystem.OnHealthMaxChange += HealthSystem_OnHealthMaxChange;
     }
 
     // Update is called once per frame
@@ -34,5 +37,31 @@ public class HealthBar : MonoBehaviour
     private void SetSliderValue()
     {
         _slider.value = _healthSystem.GetHealthAmountNormalized();
+    }
+    
+    private void SetBarVisibility(bool show)
+    {
+        gameObject.SetActive(show);
+    }
+    
+    public void SetHealthSystem(HealthSystem healthSystem)
+    {
+        _healthSystem = healthSystem;
+        Debug.Log(healthSystem.GetHealthAmountNormalized());
+
+        if (_healthSystem == null)
+        {
+            Debug.Log("NULL");
+            SetBarVisibility(false);
+        }
+        else
+        {
+            Debug.Log("NOT NULL");
+            _healthSystem.OnDamaged += HealthSystem_OnDamaged;
+            _healthSystem.OnHealed += HealthSystem_OnHealed;
+            SetBarVisibility(true);
+            SetSliderValue();
+        }
+            
     }
 }

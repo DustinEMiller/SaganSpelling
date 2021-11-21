@@ -28,6 +28,16 @@ public class WordPanel : MonoBehaviour
             _soundManager.PlaySound(WordManager.Instance.CurrentWord);
         });
     }
+    
+    public void Start()
+    {
+        MonsterSpawner.Instance.OnMonsterDied += MonsterSpawner_OnDied;
+    }
+
+    private void MonsterSpawner_OnDied(object sender, EventArgs e)
+    {
+        SetMonstersKilled();
+    }
 
     private void RebuildLabel()
     {
@@ -91,7 +101,7 @@ public class WordPanel : MonoBehaviour
             ShowHintLabel(additionalLetters);
     }
 
-    public void SetMonstersKilled()
+    private void SetMonstersKilled()
     {
         string count = MonsterSpawner.Instance.GetMonstersKilled().ToString();
         _monsterKilledLabel.text = count;
