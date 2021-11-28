@@ -51,6 +51,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             return null;
         }
+        
         return _monsters[0];
     }
 
@@ -58,7 +59,9 @@ public class MonsterSpawner : MonoBehaviour
     {
         Monster monster = _monsters[0];
         _monstersKilled++;
+        
         Destroy(monster.gameObject);
+        
         _monsters.RemoveAt(0);
         OnMonsterDied?.Invoke(this, EventArgs.Empty);
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Monster : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Monster : MonoBehaviour
     private int _currentWaypoint = 0;
     private HealthSystem _healthSystem;
     private MonsterSOHolder _monsterTypeHolder;
+    private string _name;
+    private bool _coolDown = false;
+    private float _coolDownTimer;
 
     void Awake()
     {
@@ -18,7 +22,8 @@ public class Monster : MonoBehaviour
         _monsterTypeHolder = GetComponent<MonsterSOHolder>();
         _healthSystem = GetComponent<HealthSystem>();
         _healthSystem.SetHealthAmountMax(_monsterTypeHolder.monster.maxHealth, true);
-        
+        _name =_monsterTypeHolder.monster.names[Random.Range(0, _monsterTypeHolder.monster.names.Count)];
+        _coolDownTimer = _monsterTypeHolder.monster.atkSpeed;
     }
 
     void Start()
@@ -31,11 +36,32 @@ public class Monster : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Knight knight = collision.gameObject.GetComponent<Knight>();
-        
-        if(knight != null)
+        Gate gate = collision.gameObject.GetComponent<Gate>();
+
+        if (knight != null)
         {
             _healthSystem.Damage(knight.Damage);
             Destroy(knight.gameObject);
+        }
+
+        //Move to own file
+        if(gate != null)
+        {
+            if (!_coolDown) {
+                //This needs to be moved into a different file or some sort of logic for getting hit and not tightly coupled
+                HealthSystem gateHealthSystem = gate.GetComponent<HealthSystem>();
+                gateHealthSystem.Damage(_monsterTypeHolder.monster.damage);
+                _coolDown = true;
+            } 
+            else {
+                _coolDownTimer -= Time.deltaTime;
+                if (_coolDownTimer <= 0)
+                {
+                    _coolDown = false;
+                    _coolDownTimer = _monsterTypeHolder.monster.atkSpeed;
+                }
+            }
+
         }
     }
     
@@ -79,5 +105,10 @@ public class Monster : MonoBehaviour
             var target = WayPoints.GetWaypoints[_currentWaypoint];
             WalkToDestination(target.transform);
         }
+    }
+
+    public string GetName()
+    {
+        return _name;
     }
 }

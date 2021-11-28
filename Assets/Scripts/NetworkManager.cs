@@ -1,25 +1,30 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
+
 public class NetworkManager : MonoBehaviour
 {
-
-    [SerializeField] private string _jsonWordList;
+    [SerializeField] private List<string> _wordList;
 
     private WordList _weeklyWordList;
-    
+
     public UnityEvent WordsLoaded;
-    
     public static NetworkManager Instance { get; private set; }
 
     private void Awake()
     {
+        var url = _wordList[0];
+        if (PlayerPrefs.GetString("UseAllWords") == "True")
+        {
+            url = _wordList[0];
+        }
         Instance = this;
-        StartCoroutine(GetRequest(_jsonWordList, (UnityWebRequest req) =>
+        StartCoroutine(GetRequest(url, (UnityWebRequest req) =>
         {
             if (req.isNetworkError || req.isHttpError)
             {

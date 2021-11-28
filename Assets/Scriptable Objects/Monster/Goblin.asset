@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   prefab: {fileID: 7488791674817444116, guid: 0e77eb860f1b2db418c3f75500b2b239, type: 3}
-  name: Goblin
+  type: Goblin
   maxHealth: 90
   speed: 2.5
   damage: 2
   atkSpeed: 3.2
+  names:
+  - a goblin
+  - uh goblin
+  - key FOB-lin
+  - corn coblin
+  - THE goblin
+  - THE GOBLIN
+  - Goblin
+  - George
