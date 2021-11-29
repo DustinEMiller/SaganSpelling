@@ -70,4 +70,13 @@ public class MonsterSpawner : MonoBehaviour
     {
         return _monstersKilled;
     }
+
+    public void DespawnMonsters()
+    {
+        foreach (Monster monster in _monsters)
+        {
+            Destroy(monster.gameObject);
+        }
+    }
+    
 }

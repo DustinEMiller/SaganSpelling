@@ -14,6 +14,8 @@ public class Monster : MonoBehaviour
     private string _name;
     private bool _coolDown = false;
     private float _coolDownTimer;
+    private bool _attacking = false;
+    private Gate _gate;
 
     void Awake()
     {
@@ -47,24 +49,11 @@ public class Monster : MonoBehaviour
         //Move to own file
         if(gate != null)
         {
-            if (!_coolDown) {
-                //This needs to be moved into a different file or some sort of logic for getting hit and not tightly coupled
-                HealthSystem gateHealthSystem = gate.GetComponent<HealthSystem>();
-                gateHealthSystem.Damage(_monsterTypeHolder.monster.damage);
-                _coolDown = true;
-            } 
-            else {
-                _coolDownTimer -= Time.deltaTime;
-                if (_coolDownTimer <= 0)
-                {
-                    _coolDown = false;
-                    _coolDownTimer = _monsterTypeHolder.monster.atkSpeed;
-                }
-            }
-
+            _gate = gate;
+            _attacking = true;
         }
     }
-    
+
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
         //SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
@@ -89,6 +78,24 @@ public class Monster : MonoBehaviour
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.5f)
         {
             NextWayPoint();
+        }
+
+        if (_attacking)
+        {
+            if (!_coolDown) {
+                //This needs to be moved into a different file or some sort of logic for getting hit and not tightly coupled
+                HealthSystem gateHealthSystem = _gate.GetComponent<HealthSystem>();
+                gateHealthSystem.Damage(_monsterTypeHolder.monster.damage);
+                _coolDown = true;
+            } 
+            else {
+                _coolDownTimer -= Time.deltaTime;
+                if (_coolDownTimer <= 0)
+                {
+                    _coolDown = false;
+                    _coolDownTimer = _monsterTypeHolder.monster.atkSpeed;
+                }
+            }
         }
     }
     

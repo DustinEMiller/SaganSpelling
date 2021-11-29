@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Transform> _walkPoints;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] public List<GameObject> _camera;
+    [SerializeField] public Canvas _wordPanel;
+    [SerializeField] public Canvas _gameOverScreen;
+    [SerializeField] private HealthSystem _gateHealthSystem;
 
     private bool _listIsLoaded = false;
     private bool _introComplete = false;
@@ -29,8 +32,18 @@ public class GameManager : MonoBehaviour
         {
             _camera[0].SetActive(true);
         }
-        
+
+        _gateHealthSystem.OnDied += GameOver;
         StartCoroutine(GameIntro());
+    }
+
+    private void GameOver(object sender, EventArgs e)
+    {
+        KnightSpawner.Instance.DespawnKnights();
+        MonsterSpawner.Instance.DespawnMonsters();
+        MonsterSpawner.Instance.gameObject.SetActive(false);
+        _gameOverScreen.gameObject.SetActive(true);
+        _wordPanel.gameObject.SetActive(false);
     }
 
     private IEnumerator GameIntro()

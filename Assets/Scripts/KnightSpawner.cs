@@ -52,4 +52,12 @@ public class KnightSpawner : MonoBehaviour
             knight.Attack();
         }
     }
+
+    public void DespawnKnights()
+    {
+        foreach (Knight knight in _knights)
+        {
+            Destroy(knight.gameObject);
+        }
+    }
 }
