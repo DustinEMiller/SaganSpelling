@@ -51,6 +51,8 @@ public class Monster : MonoBehaviour
         {
             _gate = gate;
             _attacking = true;
+            _navMeshAgent.SetDestination(gameObject.transform.position);
+            _animator.SetBool("Walk", false);
         }
     }
 
@@ -74,16 +76,18 @@ public class Monster : MonoBehaviour
     
     void Update()
     {
-        _animator.SetBool("Walk", _navMeshAgent.velocity.magnitude > 0f);
-        if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.5f)
+        if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.5f && !_attacking)
         {
+            _animator.SetBool("Walk", true);
             NextWayPoint();
         }
 
         if (_attacking)
         {
+            
             if (!_coolDown) {
                 //This needs to be moved into a different file or some sort of logic for getting hit and not tightly coupled
+                _animator.SetTrigger("Attack");
                 HealthSystem gateHealthSystem = _gate.GetComponent<HealthSystem>();
                 gateHealthSystem.Damage(_monsterTypeHolder.monster.damage);
                 _coolDown = true;
