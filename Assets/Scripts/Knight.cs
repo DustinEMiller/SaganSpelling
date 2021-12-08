@@ -25,6 +25,7 @@ public class Knight : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        this.transform.LookAt(Camera.main.transform);
     }
 
     void Update()

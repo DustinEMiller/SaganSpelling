@@ -83,9 +83,9 @@ public class WordManager : MonoBehaviour
     {
         _selectedKnights.Clear();
         WordPanel.ClearWord();
-        int number = Random.Range(1, 8);
+        int number = Random.Range(1, 10);
 
-        if (number <= 5)
+        if (number <= 4)
             _currentWord = _wordList.words[0].highFrequencyWords[Random.Range(0, _wordList.words[0].highFrequencyWords.Count)].word;
         else
             _currentWord = _wordList.words[0].otherWords[Random.Range(0, _wordList.words[0].otherWords.Count)].word;
